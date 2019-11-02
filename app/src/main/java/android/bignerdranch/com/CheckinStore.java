@@ -33,35 +33,35 @@ public class CheckinStore {
 
     }
 
-    public void addCrime(Checkin c) {
+    public void addCheckin(Checkin c) {
         //mCrimes.add(c); //deleted
         ContentValues values = getContentValues(c);
         mDatabase.insert(CheckinTable.NAME, null, values);
 
     }
-    public List<Checkin> getCrimes() {
+    public List<Checkin> getCheckins() {
         //return mCrimes;//deleted
-        List<Checkin> crimes = new ArrayList<>();
-        CheckinCursorWrapper cursor = queryCrimes(null, null);
+        List<Checkin> checkins = new ArrayList<>();
+        CheckinCursorWrapper cursor = queryCheckins(null, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
-                crimes.add(cursor.getCrime());
+                checkins.add(cursor.getCheckin());
                 cursor.moveToNext();
             }
         } finally {
             cursor.close();
         }
-        return crimes;
+        return checkins;
 
     }
-    public Checkin getCrime(UUID id){
+    public Checkin getCheckin(UUID id){
        /* for (Checkin crime : mCrimes){
             if (crime.getId().equals(id)){
                 return crime;
             }
         }*/
-        CheckinCursorWrapper cursor = queryCrimes(
+        CheckinCursorWrapper cursor = queryCheckins(
                 CheckinTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
@@ -70,27 +70,27 @@ public class CheckinStore {
                 return null;
             }
             cursor.moveToFirst();
-            return cursor.getCrime();
+            return cursor.getCheckin();
         } finally {
             cursor.close();
         }
 
     }
 
-    public File getPhotoFile(Checkin crime) {
+    public File getPhotoFile(Checkin checkin) {
         File filesDir = mContext.getFilesDir();
-        return new File(filesDir, crime.getPhotoFilename());
+        return new File(filesDir, checkin.getPhotoFilename());
     }
 
-    public void updateCrime(Checkin crime) {
-        String uuidString = crime.getId().toString();
-        ContentValues values = getContentValues(crime);
+    public void updateCheckin(Checkin checkin) {
+        String uuidString = checkin.getId().toString();
+        ContentValues values = getContentValues(checkin);
         mDatabase.update(CheckinTable.NAME, values,
                 CheckinTable.Cols.UUID + " = ?",
                 new String[] { uuidString });
     }
 
-    private CheckinCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
+    private CheckinCursorWrapper queryCheckins(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 CheckinTable.NAME,
                 null, // columns - null selects all columns
@@ -102,13 +102,13 @@ public class CheckinStore {
         );
         return new CheckinCursorWrapper(cursor);
     }
-    private static ContentValues getContentValues(Checkin crime) {
+    private static ContentValues getContentValues(Checkin checkin) {
         ContentValues values = new ContentValues();
-        values.put(CheckinTable.Cols.UUID, crime.getId().toString());
-        values.put(CheckinTable.Cols.TITLE, crime.getTitle());
-        values.put(CheckinTable.Cols.DATE, crime.getDate().getTime());
-        values.put(CheckinTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
-        values.put(CheckinTable.Cols.SUSPECT, crime.getSuspect());
+        values.put(CheckinTable.Cols.UUID, checkin.getId().toString());
+        values.put(CheckinTable.Cols.TITLE, checkin.getTitle());
+        values.put(CheckinTable.Cols.DATE, checkin.getDate().getTime());
+        values.put(CheckinTable.Cols.SOLVED, checkin.isSolved() ? 1 : 0);
+        values.put(CheckinTable.Cols.SUSPECT, checkin.getSuspect());
 
         return values;
     }

@@ -14,20 +14,20 @@ public class CheckinCursorWrapper extends CursorWrapper {
         super(cursor);
     }
 
-    public Checkin getCrime() {
+    public Checkin getCheckin() {
         String uuidString = getString(getColumnIndex(CheckinTable.Cols.UUID));
         String title = getString(getColumnIndex(CheckinTable.Cols.TITLE));
         long date = getLong(getColumnIndex(CheckinTable.Cols.DATE));
         int isSolved = getInt(getColumnIndex(CheckinTable.Cols.SOLVED));
         String suspect = getString(getColumnIndex(CheckinTable.Cols.SUSPECT));
 
-        Checkin crime = new Checkin(UUID.fromString(uuidString));
-        crime.setTitle(title);
-        crime.setDate(new Date(date));
-        crime.setSolved(isSolved != 0);
-        crime.setSuspect(suspect);
+        Checkin checkin = new Checkin(UUID.fromString(uuidString));
+        checkin.setTitle(title);
+        checkin.setDate(new Date(date));
+        checkin.setSolved(isSolved != 0);
+        checkin.setSuspect(suspect);
 
-        return crime;
+        return checkin;
     }
 
 }

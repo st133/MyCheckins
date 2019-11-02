@@ -14,13 +14,13 @@
     <string name="show_location">Show Map</string>
     <string name="checkin_record_text">Share</string>
     <string name="crime_report">%1$s!
-The crime was discovered on %2$s. %3$s, and %4$s
+The Location was checked-in on %2$s. %3$s, and %4$s
 </string>
-    <string name="crime_report_solved">The case is solved</string>
-    <string name="crime_report_unsolved">The case is not solved</string>
-    <string name="crime_report_no_suspect">there is no suspect.</string>
-    <string name="crime_report_suspect">the suspect is %s.</string>
-    <string name="crime_report_subject">CriminalIntent Crime Report</string>
-    <string name="send_report">Send crime report via</string>
+    <string name="crime_report_solved">Location checked</string>
+    <string name="crime_report_unsolved">Location not checked</string>
+    <string name="crime_report_no_suspect">there is no contact.</string>
+    <string name="crime_report_suspect">the contact is %s.</string>
+    <string name="crime_report_subject">Check-in Report</string>
+    <string name="send_report">Send report via</string>
     <string name="title_activity_maps">Map</string>
 </resources>

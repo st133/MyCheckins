@@ -17,15 +17,15 @@ import java.util.UUID;
 
 public class CheckinActivity extends AppCompatActivity {
 
-    private static final String EXTRA_CRIME_ID =
-            "com.bignerdranch.android.criminalintent.crime_id";
+    private static final String EXTRA_CHECKIN_ID =
+            "com.bignerdranch.android.mycheckins.checkin_id";
 
     private ViewPager mViewPager;
-    private List<Checkin> mCrimes;
+    private List<Checkin> mCheckins;
 
-    public static Intent newIntent(Context packageContext, UUID crimeId) {
+    public static Intent newIntent(Context packageContext, UUID checkinId) {
         Intent intent = new Intent(packageContext, CheckinActivity.class);
-        intent.putExtra(EXTRA_CRIME_ID, crimeId);
+        intent.putExtra(EXTRA_CHECKIN_ID, checkinId);
         return intent;
     }
 
@@ -34,29 +34,29 @@ public class CheckinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkin);
 
-        UUID crimeId = (UUID) getIntent()
-                .getSerializableExtra(EXTRA_CRIME_ID);
+        UUID checkinId = (UUID) getIntent()
+                .getSerializableExtra(EXTRA_CHECKIN_ID);
 
         mViewPager = (ViewPager) findViewById(R.id.checkin_view_pager);
 
-        mCrimes = CheckinStore.get(this).getCrimes();
+        mCheckins = CheckinStore.get(this).getCheckins();
         FragmentManager fragmentManager = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fragmentManager, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
             @Override
             public Fragment getItem(int position) {
-                Checkin crime = mCrimes.get(position);
-                return CheckinFragment.newInstance(crime.getId());
+                Checkin checkin = mCheckins.get(position);
+                return CheckinFragment.newInstance(checkin.getId());
             }
 
             @Override
             public int getCount() {
-                return mCrimes.size();
+                return mCheckins.size();
             }
         });
 
-        for (int i = 0; i < mCrimes.size(); i++) {
-            if (mCrimes.get(i).getId().equals(crimeId)) {
+        for (int i = 0; i < mCheckins.size(); i++) {
+            if (mCheckins.get(i).getId().equals(checkinId)) {
                 mViewPager.setCurrentItem(i);
                 break;
             }

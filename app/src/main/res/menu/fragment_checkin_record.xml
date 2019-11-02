@@ -8,6 +8,7 @@
         app:showAsAction="ifRoom|withText"/>
 
     <item
+        android:name="https://www.wikipedia.org/"
         android:id="@+id/show_help"
         android:title="@string/show_help"
         app:showAsAction="ifRoom"/>

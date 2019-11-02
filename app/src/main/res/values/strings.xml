@@ -10,6 +10,7 @@
     <string name="show_help">Help!</string>
     <string name="hide_subtitle">Hide Subtitle</string>
     <string name="subtitle_format">%1$d crimes</string>
+    <string name="checked_location">Checked Location</string>
     <string name="show_location">Show Map</string>
     <string name="checkin_record_text">Share</string>
     <string name="crime_report">%1$s!
@@ -21,4 +22,5 @@ The crime was discovered on %2$s. %3$s, and %4$s
     <string name="crime_report_suspect">the suspect is %s.</string>
     <string name="crime_report_subject">CriminalIntent Crime Report</string>
     <string name="send_report">Send crime report via</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

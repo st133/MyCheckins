@@ -1,15 +1,15 @@
 package android.bignerdranch.com.database;
 
-import android.bignerdranch.com.database.CrimeDbSchema.CrimeTable;
+import android.bignerdranch.com.database.CheckinDbSchema.CrimeTable;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class CrimeBaseHelper extends SQLiteOpenHelper {
+public class CheckinBaseHelper extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "crimeBase.db";
-    public CrimeBaseHelper(Context context) {
+    public CheckinBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
     @Override

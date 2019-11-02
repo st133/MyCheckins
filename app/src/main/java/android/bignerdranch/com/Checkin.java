@@ -3,19 +3,21 @@ package android.bignerdranch.com;
 import java.util.Date;
 import java.util.UUID;
 
-public class Crime {
+public class Checkin {
     private UUID mId;
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
     private String mSuspect;
+    private Double latitude;
+    private Double longitude;
 
-    public Crime() {
+    public Checkin() {
         this(UUID.randomUUID());
        // mId = UUID.randomUUID();
         //mDate = new Date();
     }
-    public Crime(UUID id) {
+    public Checkin(UUID id) {
         mId = id;
         mDate = new Date();
     }
@@ -56,5 +58,13 @@ public class Crime {
     }
     public String getPhotoFilename() {
         return "IMG_" + getId().toString() + ".jpg";
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude =latitude;
     }
 }

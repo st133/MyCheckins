@@ -1,48 +1,48 @@
 package android.bignerdranch.com;
 
-import android.bignerdranch.com.database.CrimeBaseHelper;
-import android.bignerdranch.com.database.CrimeCursorWrapper;
+import android.bignerdranch.com.database.CheckinBaseHelper;
+import android.bignerdranch.com.database.CheckinCursorWrapper;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.bignerdranch.com.database.CrimeDbSchema.CrimeTable;
+import android.bignerdranch.com.database.CheckinDbSchema.CrimeTable;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class CrimeLab {
-    private static CrimeLab sCrimeLab;
-    //private List<Crime> mCrimes; // deleted
+public class CheckinStore {
+    private static CheckinStore sCheckinStore;
+    //private List<Checkin> mCrimes; // deleted
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
-    public static CrimeLab get(Context context){
-        if (sCrimeLab == null) {
-            sCrimeLab = new CrimeLab(context);
+    public static CheckinStore get(Context context){
+        if (sCheckinStore == null) {
+            sCheckinStore = new CheckinStore(context);
         }
-        return sCrimeLab;
+        return sCheckinStore;
     }
-    private CrimeLab(Context context){
+    private CheckinStore(Context context){
         mContext = context.getApplicationContext();
-        mDatabase = new CrimeBaseHelper(mContext)
+        mDatabase = new CheckinBaseHelper(mContext)
                 .getWritableDatabase();
         //mCrimes = new ArrayList<>();  //deleted
 
     }
 
-    public void addCrime(Crime c) {
+    public void addCrime(Checkin c) {
         //mCrimes.add(c); //deleted
         ContentValues values = getContentValues(c);
         mDatabase.insert(CrimeTable.NAME, null, values);
 
     }
-    public List<Crime> getCrimes() {
+    public List<Checkin> getCrimes() {
         //return mCrimes;//deleted
-        List<Crime> crimes = new ArrayList<>();
-        CrimeCursorWrapper cursor = queryCrimes(null, null);
+        List<Checkin> crimes = new ArrayList<>();
+        CheckinCursorWrapper cursor = queryCrimes(null, null);
         try {
             cursor.moveToFirst();
             while (!cursor.isAfterLast()) {
@@ -55,13 +55,13 @@ public class CrimeLab {
         return crimes;
 
     }
-    public Crime getCrime(UUID id){
-       /* for (Crime crime : mCrimes){
+    public Checkin getCrime(UUID id){
+       /* for (Checkin crime : mCrimes){
             if (crime.getId().equals(id)){
                 return crime;
             }
         }*/
-        CrimeCursorWrapper cursor = queryCrimes(
+        CheckinCursorWrapper cursor = queryCrimes(
                 CrimeTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
@@ -77,12 +77,12 @@ public class CrimeLab {
 
     }
 
-    public File getPhotoFile(Crime crime) {
+    public File getPhotoFile(Checkin crime) {
         File filesDir = mContext.getFilesDir();
         return new File(filesDir, crime.getPhotoFilename());
     }
 
-    public void updateCrime(Crime crime) {
+    public void updateCrime(Checkin crime) {
         String uuidString = crime.getId().toString();
         ContentValues values = getContentValues(crime);
         mDatabase.update(CrimeTable.NAME, values,
@@ -90,7 +90,7 @@ public class CrimeLab {
                 new String[] { uuidString });
     }
 
-    private CrimeCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
+    private CheckinCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 CrimeTable.NAME,
                 null, // columns - null selects all columns
@@ -100,9 +100,9 @@ public class CrimeLab {
                 null, // having
                 null // orderBy
         );
-        return new CrimeCursorWrapper(cursor);
+        return new CheckinCursorWrapper(cursor);
     }
-    private static ContentValues getContentValues(Crime crime) {
+    private static ContentValues getContentValues(Checkin crime) {
         ContentValues values = new ContentValues();
         values.put(CrimeTable.Cols.UUID, crime.getId().toString());
         values.put(CrimeTable.Cols.TITLE, crime.getTitle());

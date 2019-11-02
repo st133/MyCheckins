@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class CrimeListFragment extends Fragment {
+public class CheckinListFragment extends Fragment {
     private static final String SAVED_SUBTITLE_VISIBLE = "subtitle";
     private RecyclerView mMycheckinsRecyclerView;
     private CrimeAdapter mAdapter;
@@ -73,9 +73,9 @@ public class CrimeListFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.new_checkins:
-                Crime crime = new Crime();
-                CrimeLab.get(getActivity()).addCrime(crime);
-                Intent intent = CrimeActivity.newIntent(getActivity(), crime.getId());
+                Checkin crime = new Checkin();
+                CheckinStore.get(getActivity()).addCrime(crime);
+                Intent intent = CheckinActivity.newIntent(getActivity(), crime.getId());
                 startActivity(intent);
                 return true;
             case R.id.show_help:
@@ -89,8 +89,8 @@ public class CrimeListFragment extends Fragment {
     }
 
     private void updateSubtitle() {
-        CrimeLab crimeLab = CrimeLab.get(getActivity());
-        int crimeCount = crimeLab.getCrimes().size();
+        CheckinStore checkinStore = CheckinStore.get(getActivity());
+        int crimeCount = checkinStore.getCrimes().size();
         String subtitle = getString(R.string.subtitle_format, crimeCount);
 
         if (!mSubtitleVisible) {
@@ -100,8 +100,8 @@ public class CrimeListFragment extends Fragment {
         activity.getSupportActionBar().setSubtitle(subtitle);
     }
     private void updateUI() {
-        CrimeLab crimeLab = CrimeLab.get(getActivity());
-        List<Crime> crimes = crimeLab.getCrimes();
+        CheckinStore checkinStore = CheckinStore.get(getActivity());
+        List<Checkin> crimes = checkinStore.getCrimes();
         if (mAdapter == null) {
             mAdapter = new CrimeAdapter(crimes);
             mMycheckinsRecyclerView.setAdapter(mAdapter);
@@ -117,16 +117,16 @@ public class CrimeListFragment extends Fragment {
     private class CrimeHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
         private TextView mDateTextView;
-        private Crime mCrime;
+        private Checkin mCrime;
 
         public CrimeHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.list_item_crime, parent, false));
+            super(inflater.inflate(R.layout.list_item_checkin, parent, false));
             itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.checkins_title);
             mDateTextView = (TextView) itemView.findViewById(R.id.checkins_date);
 
         }
-        public void bind(Crime crime) {
+        public void bind(Checkin crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
@@ -134,13 +134,13 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent intent = CrimeActivity.newIntent(getActivity(), mCrime.getId());
+            Intent intent = CheckinActivity.newIntent(getActivity(), mCrime.getId());
             startActivity(intent);
         }
     }
     private class CrimeAdapter extends RecyclerView.Adapter<CrimeHolder> {
-        private List<Crime> mCrimes;
-        public CrimeAdapter(List<Crime> crimes) {
+        private List<Checkin> mCrimes;
+        public CrimeAdapter(List<Checkin> crimes) {
             mCrimes = crimes;
         }
 
@@ -153,7 +153,7 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(CrimeHolder holder, int position) {
-            Crime crime = mCrimes.get(position);
+            Checkin crime = mCrimes.get(position);
             holder.bind(crime);
 
         }
@@ -164,7 +164,7 @@ public class CrimeListFragment extends Fragment {
 
         }
 
-        public void setCrimes(List<Crime> crimes) {
+        public void setCrimes(List<Checkin> crimes) {
             mCrimes = crimes;
         }
     }

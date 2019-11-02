@@ -6,7 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.bignerdranch.com.database.CheckinDbSchema.CrimeTable;
+import android.bignerdranch.com.database.CheckinDbSchema.CheckinTable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class CheckinStore {
     public void addCrime(Checkin c) {
         //mCrimes.add(c); //deleted
         ContentValues values = getContentValues(c);
-        mDatabase.insert(CrimeTable.NAME, null, values);
+        mDatabase.insert(CheckinTable.NAME, null, values);
 
     }
     public List<Checkin> getCrimes() {
@@ -62,7 +62,7 @@ public class CheckinStore {
             }
         }*/
         CheckinCursorWrapper cursor = queryCrimes(
-                CrimeTable.Cols.UUID + " = ?",
+                CheckinTable.Cols.UUID + " = ?",
                 new String[] { id.toString() }
         );
         try {
@@ -85,14 +85,14 @@ public class CheckinStore {
     public void updateCrime(Checkin crime) {
         String uuidString = crime.getId().toString();
         ContentValues values = getContentValues(crime);
-        mDatabase.update(CrimeTable.NAME, values,
-                CrimeTable.Cols.UUID + " = ?",
+        mDatabase.update(CheckinTable.NAME, values,
+                CheckinTable.Cols.UUID + " = ?",
                 new String[] { uuidString });
     }
 
     private CheckinCursorWrapper queryCrimes(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
-                CrimeTable.NAME,
+                CheckinTable.NAME,
                 null, // columns - null selects all columns
                 whereClause,
                 whereArgs,
@@ -104,11 +104,11 @@ public class CheckinStore {
     }
     private static ContentValues getContentValues(Checkin crime) {
         ContentValues values = new ContentValues();
-        values.put(CrimeTable.Cols.UUID, crime.getId().toString());
-        values.put(CrimeTable.Cols.TITLE, crime.getTitle());
-        values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
-        values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
-        values.put(CrimeTable.Cols.SUSPECT, crime.getSuspect());
+        values.put(CheckinTable.Cols.UUID, crime.getId().toString());
+        values.put(CheckinTable.Cols.TITLE, crime.getTitle());
+        values.put(CheckinTable.Cols.DATE, crime.getDate().getTime());
+        values.put(CheckinTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
+        values.put(CheckinTable.Cols.SUSPECT, crime.getSuspect());
 
         return values;
     }

@@ -24,11 +24,6 @@
                 android:cropToPadding="true"
                 android:background="@android:color/darker_gray"/>
 
-            <com.google.android.gms.maps.MapView
-                android:id="@+id/mapView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <ImageButton
                 android:id="@+id/take_picture"
                 android:layout_width="match_parent"
@@ -66,7 +61,8 @@
     <Button
         android:id="@+id/checkin_date"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/date_picker_title"/>
     <CheckBox
         android:id="@+id/crime_solved"
         android:layout_width="match_parent"
@@ -77,6 +73,11 @@
         android:layout_height="wrap_content"
         android:text="@string/checked_location"
         style="?android:listSeparatorTextViewStyle"/>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="141dp" />
     <Button
         android:id="@+id/checkin_location"
         android:layout_width="match_parent"

@@ -2,7 +2,7 @@ package android.bignerdranch.com.database;
 
 
 import android.bignerdranch.com.Checkin;
-import android.bignerdranch.com.database.CheckinDbSchema.CrimeTable;
+import android.bignerdranch.com.database.CheckinDbSchema.CheckinTable;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
@@ -15,11 +15,11 @@ public class CheckinCursorWrapper extends CursorWrapper {
     }
 
     public Checkin getCrime() {
-        String uuidString = getString(getColumnIndex(CrimeTable.Cols.UUID));
-        String title = getString(getColumnIndex(CrimeTable.Cols.TITLE));
-        long date = getLong(getColumnIndex(CrimeTable.Cols.DATE));
-        int isSolved = getInt(getColumnIndex(CrimeTable.Cols.SOLVED));
-        String suspect = getString(getColumnIndex(CrimeTable.Cols.SUSPECT));
+        String uuidString = getString(getColumnIndex(CheckinTable.Cols.UUID));
+        String title = getString(getColumnIndex(CheckinTable.Cols.TITLE));
+        long date = getLong(getColumnIndex(CheckinTable.Cols.DATE));
+        int isSolved = getInt(getColumnIndex(CheckinTable.Cols.SOLVED));
+        String suspect = getString(getColumnIndex(CheckinTable.Cols.SUSPECT));
 
         Checkin crime = new Checkin(UUID.fromString(uuidString));
         crime.setTitle(title);

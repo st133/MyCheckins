@@ -37,7 +37,7 @@ public class CheckinActivity extends AppCompatActivity {
         UUID crimeId = (UUID) getIntent()
                 .getSerializableExtra(EXTRA_CRIME_ID);
 
-        mViewPager = (ViewPager) findViewById(R.id.crime_view_pager);
+        mViewPager = (ViewPager) findViewById(R.id.checkin_view_pager);
 
         mCrimes = CheckinStore.get(this).getCrimes();
         FragmentManager fragmentManager = getSupportFragmentManager();

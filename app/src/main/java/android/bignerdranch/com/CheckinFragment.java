@@ -76,15 +76,7 @@ public class CheckinFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*mMapButton = (Button) v.findViewById(R.id.checkin_location);
-        mMapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CheckinFragment.this, MapsActivity.class);
-                startActivity(intent);
 
-            }
-        });*/
         UUID checkinId = (UUID) getArguments().getSerializable(ARG_CHECKIN_ID);
         mCheckin = CheckinStore.get(getActivity()).getCheckin(checkinId);
         mPhotoFile = CheckinStore.get(getActivity()).getPhotoFile(mCheckin);
@@ -190,6 +182,15 @@ public class CheckinFragment extends Fragment {
 
             }
         });
+        mMapButton = (Button) v.findViewById(R.id.checkin_location);
+        mMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (getActivity(), MapsActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 
@@ -209,7 +210,7 @@ public class CheckinFragment extends Fragment {
         final Intent pickContact = new Intent(Intent.ACTION_PICK,
                 ContactsContract.Contacts.CONTENT_URI);
         //pickContact.addCategory(Intent.CATEGORY_HOME);
-        mSuspectButton = (Button) v.findViewById(R.id.checkin_location);
+        mSuspectButton = (Button) v.findViewById(R.id.checkin_contacts);
         mSuspectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivityForResult(pickContact, REQUEST_CONTACT);

@@ -971,6 +971,7 @@ id chain
 id chains
 id checkbox
 id checked
+id checkin_contacts
 id checkin_date
 id checkin_image
 id checkin_location
@@ -1263,6 +1264,7 @@ string common_google_play_services_wear_update_text
 string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
+string contacts
 string crime_report
 string crime_report_no_suspect
 string crime_report_solved

@@ -5,6 +5,7 @@
     <string name="checkin_place_label">Place</string>
     <string name="checkin_details_label">Details</string>
     <string name="crime_solved_label">Solved</string>
+    <string name="contacts">Checked in with</string>
     <string name="date_picker_title">Date of checkin:</string>
     <string name="new_checkins">New Checkins</string>
     <string name="show_help">Help!</string>

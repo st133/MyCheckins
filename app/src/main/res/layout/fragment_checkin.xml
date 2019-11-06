@@ -77,6 +77,12 @@
         android:layout_height="wrap_content"
         android:text="@string/crime_solved_label"/>
 
+    <Button
+        android:id="@+id/checkin_contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/contacts" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

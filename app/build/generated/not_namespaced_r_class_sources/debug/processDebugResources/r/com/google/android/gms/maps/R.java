@@ -40,7 +40,7 @@ public final class R {
     public static final class id {
         private id() {}
 
-        public static final int hybrid = 0x7f07008b;
+        public static final int hybrid = 0x7f07008c;
         public static final int none = 0x7f0700a9;
         public static final int normal = 0x7f0700aa;
         public static final int satellite = 0x7f0700c2;

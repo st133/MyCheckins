@@ -978,6 +978,7 @@ id checkin_record
 id checkin_title
 id checkin_view_pager
 id checkins_date
+id checkins_details
 id checkins_place
 id checkins_title
 id chronometer
@@ -1042,7 +1043,6 @@ id linear
 id listMode
 id list_item
 id map
-id mapView
 id message
 id middle
 id motion_base

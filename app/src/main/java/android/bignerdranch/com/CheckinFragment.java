@@ -35,6 +35,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -57,6 +58,7 @@ public class CheckinFragment extends Fragment {
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
     private Button mSuspectButton;
+    private Button mMapButton;
     private Button mReportButton;
     private ImageButton mPhotoButton;
     private ImageView mPhotoView;
@@ -73,11 +75,23 @@ public class CheckinFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*mMapButton = (Button) v.findViewById(R.id.checkin_location);
+        mMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckinFragment.this, MapsActivity.class);
+                startActivity(intent);
+
+            }
+        });*/
         UUID checkinId = (UUID) getArguments().getSerializable(ARG_CHECKIN_ID);
         mCheckin = CheckinStore.get(getActivity()).getCheckin(checkinId);
         mPhotoFile = CheckinStore.get(getActivity()).getPhotoFile(mCheckin);
 
-        mClient = new GoogleApiClient.Builder(getActivity()).addApi(LocationServices.API).addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+        mClient = new GoogleApiClient.Builder(getActivity())
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
             @Override
             public void onConnected(@Nullable Bundle bundle) {
                 LocationRequest request = LocationRequest.create();
@@ -90,6 +104,7 @@ public class CheckinFragment extends Fragment {
                 }
 
                 LocationServices.FusedLocationApi.requestLocationUpdates(mClient, request, new LocationListener() {
+
                     @Override
                     public void onLocationChanged(Location location) {
                         mCheckin.setLongitude(location.getLongitude());
@@ -104,7 +119,10 @@ public class CheckinFragment extends Fragment {
 
             }
         }).build();
+
+
     }
+
 
     @Override
     public void onStart() {
@@ -173,6 +191,8 @@ public class CheckinFragment extends Fragment {
             }
         });
 
+
+
         mReportButton = (Button) v.findViewById(R.id.checkin_record);
         mReportButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -230,7 +250,11 @@ public class CheckinFragment extends Fragment {
         mPhotoView = (ImageView) v.findViewById(R.id.checkin_image);
         updatePhotoView();
         return v;
+
+
     }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) {

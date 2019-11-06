@@ -45,6 +45,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/checkin_title_hint"/>
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/checkin_place_label"/>
+            <EditText
+                android:id="@+id/checkins_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -52,12 +61,11 @@
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/checkin_place_label"/>
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/checkin_details_label"/>
+    <EditText
+        android:id="@+id/checkins_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/checkin_date"
         android:layout_width="match_parent"
@@ -68,21 +76,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/crime_solved_label"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/checked_location"
-        style="?android:listSeparatorTextViewStyle"/>
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="141dp" />
-    <Button
-        android:id="@+id/checkin_location"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/show_location"/>
+        android:orientation="horizontal">
+
+        <TextView
+            style="?android:listSeparatorTextViewStyle"
+            android:layout_width="266dp"
+            android:layout_height="wrap_content"
+            android:text="@string/checked_location" />
+
+        <Button
+            android:id="@+id/checkin_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/show_location" />
+    </LinearLayout>
     <Button
         android:id="@+id/checkin_record"
         android:layout_width="match_parent"

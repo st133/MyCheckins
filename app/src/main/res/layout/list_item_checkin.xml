@@ -13,10 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Checkin Date"/>
-    /*<TextView
+    <TextView
         android:id="@+id/checkins_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Checkin Place"/>*/
+        android:text="Checkin Place"/>
 
 </LinearLayout>
